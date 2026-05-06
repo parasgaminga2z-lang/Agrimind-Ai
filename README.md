@@ -6,12 +6,12 @@ AgriMind AI is a comprehensive, data-driven agricultural ecosystem designed to e
 
 Agriculture today faces multiple challenges:
 
-*  **🌱 Lack of modern farming knowledge among new generation
-*  **🌦 Unpredictable weather affecting crop yield
-*  **🧪 Poor understanding of soil and crop requirements
-*  **🐛 Late detection of crop diseases
-*  **📉 No real-time access to mandi prices and government schemes
-*  **🤝 Lack of collaboration among farmers
+*  🌱 Lack of modern farming knowledge among new generation
+*  🌦 Unpredictable weather affecting crop yield
+*  🧪 Poor understanding of soil and crop requirements
+*  🐛 Late detection of crop diseases
+*  📉 No real-time access to mandi prices and government schemes
+*  🤝 Lack of collaboration among farmers
 ## 🌟 Key Features
 
 *   **Community AI Crop Doctor**: Instant plant disease detection. Upload a photo of a damaged leaf, and the AI will analyze it against 10,000+ diseases to provide precise, organic treatment solutions.
