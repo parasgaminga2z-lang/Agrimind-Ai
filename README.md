@@ -2,16 +2,16 @@
 
 AgriMind AI is a comprehensive, data-driven agricultural ecosystem designed to empower Indian farmers. It serves as a unified digital platform providing hyper-local insights, real-time marketplaces, AI diagnostics, and equipment rental hubs directly in the hands of the farming community.
 
-Problem Statement
+## Problem Statement
 
 Agriculture today faces multiple challenges:
 
-🌱 Lack of modern farming knowledge among new generation
-🌦 Unpredictable weather affecting crop yield
-🧪 Poor understanding of soil and crop requirements
-🐛 Late detection of crop diseases
-📉 No real-time access to mandi prices and government schemes
-🤝 Lack of collaboration among farmers
+*  **🌱 Lack of modern farming knowledge among new generation
+*  **🌦 Unpredictable weather affecting crop yield
+*  **🧪 Poor understanding of soil and crop requirements
+*  **🐛 Late detection of crop diseases
+*  **📉 No real-time access to mandi prices and government schemes
+*  **🤝 Lack of collaboration among farmers
 ## 🌟 Key Features
 
 *   **Community AI Crop Doctor**: Instant plant disease detection. Upload a photo of a damaged leaf, and the AI will analyze it against 10,000+ diseases to provide precise, organic treatment solutions.
@@ -45,7 +45,7 @@ Since AgriMind AI is built with a focus on simplicity and offline-first capabili
 
 The platform is designed to be highly responsive, lightweight, and visually premium, addressing the needs of rural users without compromising on modern web aesthetics. Features include dynamic data tickers, parallax scrolling, micro-animations, and a fully functional offline-capable architecture.
 
-🌾 AgriMind AI – Summary
+## 🌾 AgriMind AI – Summary
 
 AgriMind AI is an AI-powered smart farming platform that helps farmers make better decisions using data, artificial intelligence, and community support. It combines features like crop recommendation, disease detection, irrigation planning, weather insights, and mandi price tracking in one mobile application.
 
