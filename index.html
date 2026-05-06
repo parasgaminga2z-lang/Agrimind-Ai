@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriMind AI - Advanced Smart Farming</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader-content">
+            <i class="fa-solid fa-leaf loader-icon"></i>
+            <h2 class="pulse-text" data-lang-en="AgriMind AI" data-lang-hi="एग्रीमाइंड एआई">AgriMind AI</h2>
+            <p data-lang-en="Planting seeds of technology..." data-lang-hi="प्रौद्योगिकी के बीज बोना...">Planting seeds of technology...</p>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">
+            <i class="fa-solid fa-seedling"></i>
+            <span>AgriMind</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#hero" data-lang-en="Home" data-lang-hi="होम">Home</a></li>
+            <li><a href="#ai-doctor" data-lang-en="AI Doctor" data-lang-hi="एआई डॉक्टर">AI Doctor</a></li>
+            <li><a href="#soil-calc" data-lang-en="Soil Tool" data-lang-hi="मिट्टी उपकरण">Soil Tool</a></li>
+            <li><a href="#rentals" data-lang-en="Rentals" data-lang-hi="किराये">Rentals</a></li>
+            <li><a href="#marketplace" data-lang-en="Market" data-lang-hi="बाज़ार">Market</a></li>
+            <li><a href="#schemes" data-lang-en="Schemes" data-lang-hi="योजनाएं">Schemes</a></li>
+        </ul>
+        <div class="nav-controls">
+            <button id="locate-btn" class="lang-btn" title="Detect Location">
+                <i class="fa-solid fa-location-crosshairs"></i> <span class="hide-mobile" data-lang-en="Locate" data-lang-hi="स्थान">Locate</span>
+            </button>
+            <button id="lang-toggle" class="lang-btn">
+                <span class="flag">🇮🇳</span> <span id="current-lang">EN</span>
+            </button>
+            <div class="hamburger">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Marquee Ticker (Weather & Prices) -->
+    <div class="ticker-wrap">
+        <div class="ticker">
+            <div class="ticker__item"><i class="fa-solid fa-cloud-sun"></i> <span id="ticker-weather-1" data-lang-en="Loading weather..." data-lang-hi="मौसम लोड हो रहा है...">Loading weather...</span></div>
+            <div class="ticker__item"><i class="fa-solid fa-arrow-trend-up"></i> <span id="ticker-mandi-1" data-lang-en="Loading mandi prices..." data-lang-hi="मंडी की कीमतें लोड हो रही हैं...">Loading mandi prices...</span></div>
+            <div class="ticker__item"><i class="fa-solid fa-arrow-trend-down"></i> <span id="ticker-mandi-2" data-lang-en="Loading mandi prices..." data-lang-hi="मंडी की कीमतें लोड हो रही हैं...">Loading mandi prices...</span></div>
+            <div class="ticker__item"><i class="fa-solid fa-cloud-rain"></i> <span id="ticker-weather-2" data-lang-en="Loading weather..." data-lang-hi="मौसम लोड हो रहा है...">Loading weather...</span></div>
+            <div class="ticker__item"><i class="fa-solid fa-arrow-trend-up"></i> <span id="ticker-mandi-3" data-lang-en="Loading mandi prices..." data-lang-hi="मंडी की कीमतें लोड हो रही हैं...">Loading mandi prices...</span></div>
+        </div>
+    </div>
+
+    <!-- Hero Section with Parallax -->
+    <header class="hero" id="hero">
+        <div class="hero-bg parallax-bg"></div>
+        <div class="hero-content fade-up stagger-1">
+            <h1 data-lang-en="The Ultimate Digital Farm Ecosystem" data-lang-hi="अंतिम डिजिटल कृषि पारिस्थितिकी तंत्र">The <span class="highlight">Ultimate</span> Digital Farm Ecosystem</h1>
+            <p class="subtitle fade-up stagger-2" data-lang-en="AI Diagnostics, Direct Marketplaces, Equipment Rentals, and Government Schemes—all in your pocket." data-lang-hi="एआई डायग्नोस्टिक्स, डायरेक्ट मार्केटप्लेस, उपकरण किराये और सरकारी योजनाएं—सब कुछ आपकी जेब में।">
+                AI Diagnostics, Direct Marketplaces, Equipment Rentals, and Government Schemes—all in your pocket.
+            </p>
+            <div class="cta-group fade-up stagger-3">
+                <a href="#ai-doctor" class="btn btn-primary btn-glow"><i class="fa-solid fa-robot"></i> <span data-lang-en="Start AI Scan" data-lang-hi="एआई स्कैन शुरू करें">Start AI Scan</span></a>
+                <a href="#rentals" class="btn btn-secondary"><i class="fa-solid fa-tractor"></i> <span data-lang-en="Rent Equipment" data-lang-hi="उपकरण किराए पर लें">Rent Equipment</span></a>
+            </div>
+        </div>
+        <div class="floating-icons">
+            <i class="fa-solid fa-leaf float-1"></i>
+            <i class="fa-solid fa-droplet float-2"></i>
+            <i class="fa-solid fa-sun float-3"></i>
+        </div>
+    </header>
+
+    <!-- AI Photo Diagnostics Section -->
+    <section class="section ai-doctor" id="ai-doctor">
+        <div class="section-header fade-up">
+            <h2 data-lang-en="Community AI Crop Doctor" data-lang-hi="सामुदायिक एआई फसल डॉक्टर">Community AI Crop Doctor</h2>
+            <p data-lang-en="Instant disease detection using your phone camera." data-lang-hi="अपने फोन कैमरे का उपयोग करके तुरंत बीमारी का पता लगाएं।">Instant disease detection using your phone camera.</p>
+        </div>
+        
+        <div class="ai-demo-container">
+            <div class="ai-instructions fade-right">
+                <img src="assets/ai_farmer.png" alt="Farmer using AI" style="width: 100%; border-radius: var(--radius-lg); margin-bottom: 30px; box-shadow: var(--shadow-soft); height: 250px; object-fit: cover;">
+                <div class="ai-step hover-scale">
+                    <div class="ai-icon"><i class="fa-solid fa-mobile-screen"></i></div>
+                    <div>
+                        <h4 data-lang-en="1. Snap a Photo" data-lang-hi="1. एक तस्वीर लें">1. Snap a Photo</h4>
+                        <p data-lang-en="Focus on the damaged leaves." data-lang-hi="क्षतिग्रस्त पत्तियों पर ध्यान दें।">Focus on the damaged leaves.</p>
+                    </div>
+                </div>
+                <div class="ai-step hover-scale">
+                    <div class="ai-icon"><i class="fa-solid fa-microchip"></i></div>
+                    <div>
+                        <h4 data-lang-en="2. AI Analysis" data-lang-hi="2. एआई विश्लेषण">2. AI Analysis</h4>
+                        <p data-lang-en="Scanning 10,000+ diseases instantly." data-lang-hi="तुरंत 10,000+ बीमारियों को स्कैन करना।">Scanning 10,000+ diseases instantly.</p>
+                    </div>
+                </div>
+                <div class="ai-step hover-scale">
+                    <div class="ai-icon"><i class="fa-solid fa-prescription-bottle-medical"></i></div>
+                    <div>
+                        <h4 data-lang-en="3. Get Treatment" data-lang-hi="3. उपचार प्राप्त करें">3. Get Treatment</h4>
+                        <p data-lang-en="Receive precise organic solutions." data-lang-hi="सटीक जैविक समाधान प्राप्त करें।">Receive precise organic solutions.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="ai-simulator fade-left hover-glow">
+                <div class="simulator-screen" id="sim-screen">
+                    <div class="upload-state" id="upload-state">
+                        <i class="fa-solid fa-cloud-arrow-up pulse-icon"></i>
+                        <h3 data-lang-en="Upload Leaf Image" data-lang-hi="पत्ती की छवि अपलोड करें">Upload Leaf Image</h3>
+                        <input type="file" id="leaf-image-upload" accept="image/*" style="display:none;">
+                        <button class="btn btn-secondary" id="choose-img-btn" data-lang-en="Choose Image" data-lang-hi="छवि चुनें">Choose Image</button>
+                        <div id="image-preview-container" style="display:none; margin-top: 15px;">
+                            <img id="image-preview" src="" alt="Preview" style="max-width: 100%; max-height: 150px; border-radius: 8px;">
+                        </div>
+                        <button class="btn btn-primary btn-glow" id="sim-btn" data-lang-en="Analyze with AI" data-lang-hi="एआई के साथ विश्लेषण करें" style="margin-top: 15px; display: none;">Analyze with AI</button>
+                    </div>
+                    
+                    <div class="loading-state" id="loading-state" style="display:none;">
+                        <div class="scanner-line"></div>
+                        <img id="loading-image-preview" src="" alt="Scanning" style="max-width: 100%; max-height: 150px; border-radius: 8px; margin-bottom: 15px; opacity: 0.7;">
+                        <h3 class="pulse" data-lang-en="Scanning with AI..." data-lang-hi="एआई के साथ स्कैन कर रहा है...">Scanning with AI...</h3>
+                    </div>
+                    
+                    <div class="result-state" id="result-state" style="display:none;">
+                        <div class="result-badge error pop-in" id="result-badge">
+                            <i class="fa-solid fa-triangle-exclamation"></i> <span id="result-title" data-lang-en="Blight Detected" data-lang-hi="ब्लाइट का पता चला">Blight Detected</span>
+                        </div>
+                        <h3 id="disease-name" data-lang-en="Early Blight" data-lang-hi="अर्ली ब्लाइट">Early Blight</h3>
+                        <div class="treatment-box">
+                            <strong data-lang-en="Probability:" data-lang-hi="संभावना:">Probability:</strong>
+                            <p id="disease-probability">95%</p>
+                        </div>
+                        <button class="btn btn-secondary" id="sim-reset" data-lang-en="Scan Again" data-lang-hi="फिर से स्कैन करें" style="margin-top: 15px;">Scan Again</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Smart Soil & Fertilizer Calculator -->
+    <section class="section soil-tool" id="soil-calc">
+        <div class="section-header fade-up">
+            <h2 data-lang-en="Smart Fertilizer Calculator" data-lang-hi="स्मार्ट उर्वरक कैलकुलेटर">Smart Fertilizer Calculator</h2>
+            <p data-lang-en="Stop wasting money on excess chemicals. Know exactly what your soil needs." data-lang-hi="अतिरिक्त रसायनों पर पैसा बर्बाद करना बंद करें। जानें कि आपकी मिट्टी को क्या चाहिए।">Stop wasting money on excess chemicals. Know exactly what your soil needs.</p>
+        </div>
+        
+        <div class="soil-container fade-up hover-shadow">
+            <div class="soil-form">
+                <div class="form-group">
+                    <label data-lang-en="Select Crop" data-lang-hi="फसल चुनें">Select Crop</label>
+                    <select id="crop-type">
+                        <option value="wheat" data-lang-en="Wheat" data-lang-hi="गेहूँ">Wheat</option>
+                        <option value="rice" data-lang-en="Rice" data-lang-hi="चावल">Rice</option>
+                        <option value="sugarcane" data-lang-en="Sugarcane" data-lang-hi="गन्ना">Sugarcane</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label data-lang-en="Land Area (Acres)" data-lang-hi="भूमि क्षेत्र (एकड़)">Land Area (Acres)</label>
+                    <input type="number" id="land-area" value="1" min="1">
+                </div>
+                <button class="btn btn-primary btn-block" id="calc-btn" data-lang-en="Calculate NPK" data-lang-hi="NPK की गणना करें">Calculate NPK</button>
+            </div>
+            
+            <div class="soil-result" id="soil-result">
+                <i class="fa-solid fa-flask result-icon"></i>
+                <h3 data-lang-en="Required Fertilizers" data-lang-hi="आवश्यक उर्वरक">Required Fertilizers</h3>
+                <div class="npk-grid">
+                    <div class="npk-box"><strong id="n-val">50</strong><span data-lang-en="kg Nitrogen" data-lang-hi="किलो नाइट्रोजन">kg Nitrogen</span></div>
+                    <div class="npk-box"><strong id="p-val">25</strong><span data-lang-en="kg Phosphorus" data-lang-hi="किलो फास्फोरस">kg Phosphorus</span></div>
+                    <div class="npk-box"><strong id="k-val">20</strong><span data-lang-en="kg Potassium" data-lang-hi="किलो पोटेशियम">kg Potassium</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Equipment Rental Section (Uber for Tractors) -->
+    <section class="section rentals" id="rentals">
+        <div class="section-header fade-up">
+            <h2 data-lang-en="Equipment Rentals" data-lang-hi="उपकरण किराया">Equipment Rentals</h2>
+            <p data-lang-en="Rent heavy machinery from local farmers by the hour." data-lang-hi="घंटे के हिसाब से स्थानीय किसानों से भारी मशीनरी किराए पर लें।">Rent heavy machinery from local farmers by the hour.</p>
+            <button class="btn btn-primary btn-glow" id="open-list-modal" style="margin-top: 25px;"><i class="fa-solid fa-plus"></i> <span data-lang-en="List Your Vehicle" data-lang-hi="अपना वाहन सूचीबद्ध करें">List Your Vehicle</span></button>
+        </div>
+        
+        <div class="grid card-grid" id="rentals-grid">
+            <!-- Rental cards will be dynamically injected here by JavaScript -->
+        </div>
+    </section>
+
+    <!-- Real-Time Mandi Price Search -->
+    <section class="section mandi-search" id="mandi-search">
+        <div class="section-header fade-up">
+            <h2 data-lang-en="Live Market Prices" data-lang-hi="लाइव बाजार की कीमतें">Live Market Prices</h2>
+            <p data-lang-en="Search for any crop to see real-time wholesale prices across India." data-lang-hi="पूरे भारत में वास्तविक समय की थोक कीमतों को देखने के लिए किसी भी फसल की खोज करें।">Search for any crop to see real-time wholesale prices across India.</p>
+        </div>
+        
+        <div class="search-container fade-up hover-shadow">
+            <div class="search-box">
+                <input type="text" id="crop-search-input" placeholder="Enter crop name (e.g., Onion)...">
+                <button class="btn btn-primary btn-glow" id="crop-search-btn"><i class="fa-solid fa-magnifying-glass"></i> <span data-lang-en="Search" data-lang-hi="खोज">Search</span></button>
+            </div>
+            
+            <div id="mandi-results-container" class="mandi-results grid" style="margin-top: 30px;">
+                <!-- Results will be injected here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Direct Marketplace Section -->
+    <section class="section marketplace" id="marketplace">
+        <div class="section-header fade-up">
+            <h2 data-lang-en="Direct Farmer Marketplace" data-lang-hi="सीधा किसान बाज़ार">Direct Farmer Marketplace</h2>
+            <p data-lang-en="Zero Mediators. Sell directly to bulk buyers." data-lang-hi="शून्य मध्यस्थ। सीधे थोक खरीदारों को बेचें।">Zero Mediators. Sell directly to bulk buyers.</p>
+            <button class="btn btn-primary btn-glow" id="open-market-modal" style="margin-top: 25px;"><i class="fa-solid fa-plus"></i> <span data-lang-en="Sell Your Crop" data-lang-hi="अपनी फसल बेचें">Sell Your Crop</span></button>
+        </div>
+        
+        <div class="grid card-grid" id="market-grid">
+            <!-- Market cards will be dynamically injected here by JavaScript -->
+        </div>
+    </section>
+
+    <!-- Government Schemes Section -->
+    <section class="section schemes" id="schemes">
+        <div class="section-header fade-up">
+            <h2 data-lang-en="Government Schemes & Subsidies" data-lang-hi="सरकारी योजनाएं और सब्सिडी">Government Schemes & Subsidies</h2>
+            <p data-lang-en="Discover benefits you are eligible for." data-lang-hi="उन लाभों की खोज करें जिनके आप पात्र हैं।">Discover benefits you are eligible for.</p>
+        </div>
+        
+        <div class="grid card-grid">
+            <div class="scheme-card fade-up hover-scale-slight">
+                <div class="scheme-icon"><i class="fa-solid fa-hand-holding-dollar"></i></div>
+                <h3 data-lang-en="PM-KISAN" data-lang-hi="पीएम-किसान">PM-KISAN</h3>
+                <p data-lang-en="Income support of ₹6,000 per year for farmer families." data-lang-hi="किसान परिवारों के लिए प्रति वर्ष ₹6,000 की आय सहायता।">Income support of ₹6,000 per year for farmer families.</p>
+                <a href="#" class="btn btn-secondary btn-block" data-lang-en="Check Eligibility" data-lang-hi="पात्रता जांचें">Check Eligibility</a>
+            </div>
+            
+            <div class="scheme-card fade-up hover-scale-slight" style="animation-delay: 0.1s;">
+                <div class="scheme-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                <h3 data-lang-en="PMFBY" data-lang-hi="पीएमएफबीवाई">PMFBY</h3>
+                <p data-lang-en="Comprehensive crop insurance against natural calamities." data-lang-hi="प्राकृतिक आपदाओं के खिलाफ व्यापक फसल बीमा।">Comprehensive crop insurance against natural calamities.</p>
+                <a href="#" class="btn btn-secondary btn-block" data-lang-en="Apply Now" data-lang-hi="अभी आवेदन करें">Apply Now</a>
+            </div>
+            
+            <div class="scheme-card fade-up hover-scale-slight" style="animation-delay: 0.2s;">
+                <div class="scheme-icon"><i class="fa-solid fa-credit-card"></i></div>
+                <h3 data-lang-en="Kisan Credit Card" data-lang-hi="किसान क्रेडिट कार्ड">Kisan Credit Card</h3>
+                <p data-lang-en="Access to institutional credit for agricultural needs." data-lang-hi="कृषि आवश्यकताओं के लिए संस्थागत ऋण तक पहुंच।">Access to institutional credit for agricultural needs.</p>
+                <a href="#" class="btn btn-secondary btn-block" data-lang-en="Apply Now" data-lang-hi="अभी आवेदन करें">Apply Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- List Vehicle Modal -->
+    <div class="modal-overlay" id="list-vehicle-modal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 data-lang-en="List Your Equipment" data-lang-hi="अपना उपकरण सूचीबद्ध करें">List Your Equipment</h3>
+                <button type="button" class="close-modal" id="close-modal"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <form id="list-vehicle-form" class="modal-form">
+                <div class="form-group">
+                    <label data-lang-en="Equipment Name" data-lang-hi="उपकरण का नाम">Equipment Name</label>
+                    <input type="text" id="veh-name" required placeholder="e.g. John Deere Tractor">
+                </div>
+                <div class="form-group row" style="display: flex; gap: 15px;">
+                    <div class="col" style="flex: 1;">
+                        <label data-lang-en="Rate (₹)" data-lang-hi="दर (₹)">Rate (₹)</label>
+                        <input type="number" id="veh-rate" required placeholder="800">
+                    </div>
+                    <div class="col" style="flex: 1;">
+                        <label data-lang-en="Per" data-lang-hi="प्रति">Per</label>
+                        <select id="veh-unit">
+                            <option value="/ hr">Hour</option>
+                            <option value="/ acre">Acre</option>
+                            <option value="/ day">Day</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label data-lang-en="Owner Name" data-lang-hi="मालिक का नाम">Owner Name</label>
+                    <input type="text" id="veh-owner" required placeholder="Your Name">
+                </div>
+                <div class="form-group">
+                    <label data-lang-en="Location (Distance)" data-lang-hi="स्थान (दूरी)">Location (Distance)</label>
+                    <input type="text" id="veh-loc" required placeholder="e.g. 2 km away">
+                </div>
+                <div class="form-group">
+                    <label data-lang-en="Equipment Photo" data-lang-hi="उपकरण फोटो">Equipment Photo</label>
+                    <input type="file" id="veh-photo" accept="image/*" required style="padding: 12px; background: transparent; border: 2px dashed #e2e8f0;">
+                </div>
+                <button type="submit" class="btn btn-primary btn-block" data-lang-en="Add Listing" data-lang-hi="सूचीकरण जोड़ें" style="margin-top: 10px;">Add Listing</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- List Crop Modal -->
+    <div class="modal-overlay" id="list-market-modal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 data-lang-en="Sell Your Crop" data-lang-hi="अपनी फसल बेचें">Sell Your Crop</h3>
+                <button type="button" class="close-modal" id="close-market-modal"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <form id="list-market-form" class="modal-form">
+                <div class="form-group">
+                    <label data-lang-en="Crop Name" data-lang-hi="फसल का नाम">Crop Name</label>
+                    <input type="text" id="crop-name" required placeholder="e.g. Organic Tomatoes">
+                </div>
+                <div class="form-group row" style="display: flex; gap: 15px;">
+                    <div class="col" style="flex: 1;">
+                        <label data-lang-en="Price (₹/qtl)" data-lang-hi="मूल्य (₹/क्विंटल)">Price (₹/qtl)</label>
+                        <input type="number" id="crop-price" required placeholder="2500">
+                    </div>
+                    <div class="col" style="flex: 1;">
+                        <label data-lang-en="Quantity (qtl)" data-lang-hi="मात्रा (क्विंटल)">Quantity (qtl)</label>
+                        <input type="number" id="crop-qty" required placeholder="50">
+                    </div>
+                </div>
+                <div class="form-group row" style="display: flex; gap: 15px;">
+                    <div class="col" style="flex: 1;">
+                        <label data-lang-en="Farmer Name" data-lang-hi="किसान का नाम">Farmer Name</label>
+                        <input type="text" id="crop-farmer" required placeholder="Your Name">
+                    </div>
+                    <div class="col" style="flex: 1;">
+                        <label data-lang-en="WhatsApp No." data-lang-hi="व्हाट्सएप नंबर">WhatsApp No.</label>
+                        <input type="tel" id="crop-phone" required placeholder="9876543210">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label data-lang-en="Crop Photo" data-lang-hi="फसल फोटो">Crop Photo</label>
+                    <input type="file" id="crop-photo" accept="image/*" required style="padding: 12px; background: transparent; border: 2px dashed #e2e8f0;">
+                </div>
+                <button type="submit" class="btn btn-primary btn-block" data-lang-en="Add Crop Listing" data-lang-hi="फसल सूची जोड़ें" style="margin-top: 10px;">Add Crop Listing</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Confirm Booking Modal -->
+    <div class="modal-overlay" id="booking-modal">
+        <div class="modal-card" style="max-width: 400px; text-align: center;">
+            <div class="modal-header" style="justify-content: center; margin-bottom: 15px;">
+                <h3 data-lang-en="Confirm Booking" data-lang-hi="बुकिंग की पुष्टि करें">Confirm Booking</h3>
+            </div>
+            <p id="booking-details" style="margin-bottom: 25px; color: var(--text-light); font-size: 1.1rem;"></p>
+            <div style="display: flex; gap: 15px; justify-content: center;">
+                <button class="btn btn-secondary" id="cancel-booking" data-lang-en="Cancel" data-lang-hi="रद्द करें">Cancel</button>
+                <button class="btn btn-primary btn-glow" id="confirm-booking" data-lang-en="Confirm" data-lang-hi="पुष्टि करें">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand fade-up">
+                <h2><i class="fa-solid fa-seedling"></i> AgriMind AI</h2>
+                <p data-lang-en="Empowering the backbone of India." data-lang-hi="भारत की रीढ़ को सशक्त बनाना।">Empowering the backbone of India.</p>
+            </div>
+            <div class="footer-links fade-up" style="animation-delay: 0.1s;">
+                <h4 data-lang-en="Quick Links" data-lang-hi="त्वरित लिंक">Quick Links</h4>
+                <ul>
+                    <li><a href="#ai-doctor" data-lang-en="AI Doctor" data-lang-hi="एआई डॉक्टर">AI Doctor</a></li>
+                    <li><a href="#rentals" data-lang-en="Equipment Rentals" data-lang-hi="उपकरण किराया">Equipment Rentals</a></li>
+                    <li><a href="#schemes" data-lang-en="Govt Schemes" data-lang-hi="सरकारी योजनाएं">Govt Schemes</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 AgriMind AI India.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>
