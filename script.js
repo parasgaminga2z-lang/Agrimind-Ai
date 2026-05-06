@@ -400,260 +400,130 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 8. Functional Rental Vehicle State & Logic (Queue System)
-    const rentalsGrid = document.getElementById('rentals-grid');
-    const defaultVehicles = [
-        { id: 'v1', name: 'Mahindra Tractor (50HP)', rate: '800', unit: '/ hr', owner: 'Ramesh', loc: '2 km away', img: 'assets/tractor.png', status: 'available', queue: 0 },
-        { id: 'v2', name: 'Combine Harvester', rate: '2500', unit: '/ hr', owner: 'Suresh', loc: '5 km away', img: 'assets/combine_harvester.png', status: 'busy', queue: 1 },
-        { id: 'v3', name: 'Spraying Drone', rate: '400', unit: '/ acre', owner: 'AgriTech Co', loc: '10 km away', img: 'assets/spraying_drone.png', status: 'available', queue: 0 }
-    ];
+    // 8. AI CHATBOT ASSISTANT LOGIC
+    const chatMessages = document.getElementById('chat-messages');
+    const chatInput = document.getElementById('chat-input');
+    const sendChatBtn = document.getElementById('send-chat-btn');
+    const quickBtns = document.querySelectorAll('.quick-btn');
+    const closeChatBtn = document.getElementById('close-chat-btn');
+    const floatingChatbotBtn = document.getElementById('floating-chatbot-btn');
+    const aiChatbotContainer = document.getElementById('ai-chatbot-modal');
 
-    let vehicles = JSON.parse(localStorage.getItem('agrimind_vehicles')) || defaultVehicles;
-    
-    // Migrate old data if necessary
-    vehicles = vehicles.map(v => ({...v, queue: v.queue || 0}));
-
-    function saveVehicles() {
-        localStorage.setItem('agrimind_vehicles', JSON.stringify(vehicles));
-    }
-
-    function renderVehicles() {
-        if (!rentalsGrid) return;
-        rentalsGrid.innerHTML = '';
-        vehicles.forEach(v => {
-            const isAvailable = v.status === 'available';
-            const queueCount = v.queue;
-            
-            let badgeClass = isAvailable ? 'available' : 'busy';
-            let badgeText = isAvailable ? 'Available' : (queueCount > 0 ? `Busy (Queue: ${queueCount})` : 'Busy');
-            let btnText = isAvailable ? 'Book Now' : 'Join Queue';
-            
-            const card = document.createElement('div');
-            card.className = 'equip-card fade-up hover-scale-slight visible';
-            
-            // Add a small return button if busy to demonstrate queue popping
-            const returnBtnHTML = !isAvailable ? `<button class="return-btn" data-id="${v.id}" style="margin-top: 10px; background: transparent; border: 1px solid var(--border-color); padding: 5px 10px; border-radius: 5px; cursor: pointer; width: 100%;"><i class="fa-solid fa-arrow-rotate-left"></i> Return Vehicle</button>` : '';
-
-            card.innerHTML = `
-                <div class="equip-img" style="background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('${v.img}') center/cover;">
-                    <span class="badge ${badgeClass}" data-lang-en="${badgeText}" data-lang-hi="${badgeText}">${badgeText}</span>
-                </div>
-                <div class="equip-info">
-                    <h3 data-lang-en="${v.name}" data-lang-hi="${v.name}">${v.name}</h3>
-                    <p class="rate">₹${v.rate} <span data-lang-en="${v.unit}" data-lang-hi="${v.unit}">${v.unit}</span></p>
-                    <p class="owner"><i class="fa-solid fa-location-dot"></i> <span data-lang-en="${v.loc} (${v.owner})" data-lang-hi="${v.loc} (${v.owner})">${v.loc} (${v.owner})</span></p>
-                    <button class="btn btn-secondary btn-block book-btn" data-id="${v.id}" data-lang-en="${btnText}" data-lang-hi="${btnText}">${btnText}</button>
-                    ${returnBtnHTML}
-                </div>
-            `;
-            rentalsGrid.appendChild(card);
-        });
-
-        // Attach booking listeners
-        document.querySelectorAll('.book-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const vId = e.target.getAttribute('data-id');
-                openBookingModal(vId);
-            });
-        });
-
-        // Attach return listeners
-        document.querySelectorAll('.return-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const vId = e.target.getAttribute('data-id');
-                const v = vehicles.find(veh => veh.id === vId);
-                if (v) {
-                    if (v.queue > 0) {
-                        v.queue--;
-                        alert(`Vehicle returned! Next person in queue automatically takes it. (Remaining queue: ${v.queue})`);
-                    } else {
-                        v.status = 'available';
-                        alert('Vehicle returned and is now available!');
-                    }
-                    saveVehicles();
-                    renderVehicles();
-                }
-            });
+    // Toggle Chatbot Visibility
+    if (floatingChatbotBtn && aiChatbotContainer) {
+        floatingChatbotBtn.addEventListener('click', () => {
+            aiChatbotContainer.classList.toggle('active');
+            // Focus on input when opened
+            if (aiChatbotContainer.classList.contains('active')) {
+                setTimeout(() => chatInput.focus(), 300);
+            }
         });
     }
 
-    // Initial render
-    renderVehicles();
-
-    // Booking Logic
-    const bookingModal = document.getElementById('booking-modal');
-    const bookingDetails = document.getElementById('booking-details');
-    const cancelBookingBtn = document.getElementById('cancel-booking');
-    const confirmBookingBtn = document.getElementById('confirm-booking');
-    let currentBookingId = null;
-
-    function openBookingModal(id) {
-        const v = vehicles.find(veh => veh.id === id);
-        if (!v) return;
-        currentBookingId = id;
-        
-        if (v.status === 'available') {
-            bookingDetails.textContent = `You are about to book the ${v.name} for ₹${v.rate}${v.unit}.`;
-        } else if (v.status === 'busy') {
-            bookingDetails.textContent = `The ${v.name} is currently busy. Would you like to join the queue? (Current queue length: ${v.queue})`;
+    // AI Bot Responses Database
+    const aiResponses = {
+        'crop-disease': {
+            'en': "Common crop diseases include Early Blight, Late Blight, Powdery Mildew, and Rust. For effective prevention: 1) Use disease-resistant seed varieties, 2) Practice crop rotation, 3) Maintain proper spacing for air circulation, 4) Use our AI Photo Diagnostics tool to identify diseases early. Would you like specific treatment recommendations?",
+            'hi': "आम फसल की बीमारियों में अर्ली ब्लाइट, लेट ब्लाइट, पाउडरी मिल्ड्यू और रस्ट शामिल हैं। प्रभावी रोकथाम के लिए: 1) रोग प्रतिरोधी बीज किस्मों का उपयोग करें, 2) फसल चक्रण करें, 3) उचित दूरी बनाए रखें, 4) हमारे एआई फोटो डायग्नोस्टिक्स टूल का उपयोग करें। क्या आप विशिष्ट उपचार की सिफारिशें चाहते हैं?"
+        },
+        'fertilizer': {
+            'en': "Smart fertilizer usage is key to healthy crops! Our calculator helps determine exact NPK needs based on crop type and land area. General guidelines: Wheat needs 50kg N per acre, Rice needs 60kg N per acre, Sugarcane needs 100kg N per acre. Using our Fertilizer Calculator saves up to 30% costs while improving yield. Try it now!",
+            'hi': "स्मार्ट उर्वरक उपयोग स्वस्थ फसलों की कुंजी है! हमारा कैलकुलेटर फसल के प्रकार और भूमि क्षेत्र के आधार पर सटीक NPK आवश्यकता निर्धारित करने में मदद करता है। सामान्य दिशानिर्देश: गेहूं को प्रति एकड़ 50 किग्रा N की जरूरत है, चावल को 60 किग्रा N की जरूरत है, गन्ने को 100 किग्रा N की जरूरत है। हमारे कैलकुलेटर का उपयोग करके 30% तक लागत बचाएं। अभी आज़माएं!"
+        },
+        'equipment': {
+            'en': "We offer equipment rental services for tractors, harvesters, and drones. Benefits: 1) Affordable hourly/daily rates, 2) Equipment available within 2-10 km, 3) Direct connection with local farmers, 4) Book instantly via WhatsApp. Current availability: Mahindra Tractor ₹800/hr, Combine Harvester ₹2500/hr, Spraying Drone ₹400/acre. Ready to book?",
+            'hi': "हम ट्रैक्टर, हार्वेस्टर और ड्रोन के लिए उपकरण किराये की सेवाएं प्रदान करते हैं। लाभ: 1) सस्ती घंटे/दिन दर, 2) उपकरण 2-10 किमी के भीतर उपलब्ध, 3) स्थानीय किसानों के साथ सीधा संपर्क, 4) व्हाट्सएप के माध्यम से तुरंत बुक करें। वर्तमान उपलब्धता: महिंद्रा ट्रैक्टर ₹800/घंटा, कंबाइन हार्वेस्टर ₹2500/घंटा, स्प्रेइंग ड्रोन ₹400/एकड़। बुक करने के लिए तैयार हैं?"
+        },
+        'schemes': {
+            'en': "Government schemes available for farmers: 1) PM-KISAN: ₹6,000 annual income support, 2) PMFBY: Crop insurance coverage, 3) Kisan Credit Card: Easy credit access. We help you check eligibility and apply online. Benefits can transform your farming! Click on 'Schemes' section to learn more about government support programs.",
+            'hi': "किसानों के लिए उपलब्ध सरकारी योजनाएं: 1) पीएम-किसान: ₹6,000 वार्षिक आय सहायता, 2) पीएमएफबीवाई: फसल बीमा कवरेज, 3) किसान क्रेडिट कार्ड: आसान ऋण प्रवेश। हम आपको पात्रता जांचने और ऑनलाइन आवेदन करने में मदद करते हैं। लाभ आपकी कृषि को बदल सकते हैं! अधिक जानने के लिए 'योजनाएं' सेक्शन पर क्लिक करें।"
+        },
+        'default': {
+            'en': "Hello! I'm here to help with your farming needs. I can assist with crop diseases, fertilizer calculations, equipment rentals, market prices, and government schemes. What would you like to know?",
+            'hi': "नमस्ते! मैं आपकी कृषि जरूरतों में मदद करने के लिए यहाँ हूँ। मैं फसल की बीमारियों, उर्वरक गणना, उपकरण किराये, बाजार की कीमतों और सरकारी योजनाओं में सहायता कर सकता हूँ। आप क्या जानना चाहते हैं?"
         }
+    };
+
+    function addBotMessage(text) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = 'chat-message bot-message';
+        messageDiv.innerHTML = `<div class="message-content"><p>${text}</p></div>`;
+        chatMessages.appendChild(messageDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function addUserMessage(text) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = 'chat-message user-message';
+        messageDiv.innerHTML = `<div class="message-content"><p>${text}</p></div>`;
+        chatMessages.appendChild(messageDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function getAIResponse(query) {
+        const lang = currentLang || 'en';
+        query = query.toLowerCase().trim();
         
-        bookingModal.classList.add('active');
+        // Simple keyword matching
+        if (query.includes('disease') || query.includes('बीमारी')) {
+            return aiResponses['crop-disease'][lang];
+        } else if (query.includes('fertilizer') || query.includes('उर्वरक')) {
+            return aiResponses['fertilizer'][lang];
+        } else if (query.includes('equipment') || query.includes('rent') || query.includes('उपकरण') || query.includes('किराया')) {
+            return aiResponses['equipment'][lang];
+        } else if (query.includes('scheme') || query.includes('योजना')) {
+            return aiResponses['schemes'][lang];
+        } else {
+            return aiResponses['default'][lang];
+        }
     }
 
-    if (cancelBookingBtn && confirmBookingBtn && bookingModal) {
-        cancelBookingBtn.addEventListener('click', () => {
-            bookingModal.classList.remove('active');
-            currentBookingId = null;
+    if (sendChatBtn && chatInput) {
+        sendChatBtn.addEventListener('click', () => {
+            const message = chatInput.value.trim();
+            if (!message) return;
+
+            addUserMessage(message);
+            chatInput.value = '';
+
+            // Simulate AI response delay
+            setTimeout(() => {
+                const response = getAIResponse(message);
+                addBotMessage(response);
+            }, 500);
         });
 
-        confirmBookingBtn.addEventListener('click', () => {
-            const v = vehicles.find(veh => veh.id === currentBookingId);
-            if (v) {
-                if (v.status === 'available') {
-                    v.status = 'busy';
-                } else if (v.status === 'busy') {
-                    v.queue++;
-                }
-                saveVehicles();
-                renderVehicles();
-            }
-            bookingModal.classList.remove('active');
-            currentBookingId = null;
-        });
-
-        bookingModal.addEventListener('click', (e) => {
-            if (e.target === bookingModal) {
-                bookingModal.classList.remove('active');
-                currentBookingId = null;
-            }
-        });
-    }
-
-    // List Vehicle Modal Logic
-    const openModalBtn = document.getElementById('open-list-modal');
-    const closeModalBtn = document.getElementById('close-modal');
-    const listModal = document.getElementById('list-vehicle-modal');
-    const listForm = document.getElementById('list-vehicle-form');
-
-    if (openModalBtn && listModal && closeModalBtn && listForm) {
-        openModalBtn.addEventListener('click', () => listModal.classList.add('active'));
-        closeModalBtn.addEventListener('click', () => listModal.classList.remove('active'));
-        listModal.addEventListener('click', (e) => {
-            if (e.target === listModal) listModal.classList.remove('active');
-        });
-
-        listForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const name = document.getElementById('veh-name').value;
-            const rate = document.getElementById('veh-rate').value;
-            const unit = document.getElementById('veh-unit').value;
-            const owner = document.getElementById('veh-owner').value;
-            const loc = document.getElementById('veh-loc').value;
-            const photoInput = document.getElementById('veh-photo');
-            
-            if (photoInput.files && photoInput.files[0]) {
-                const reader = new FileReader();
-                reader.onload = function(event) {
-                    const newId = 'v' + Date.now();
-                    vehicles.unshift({
-                        id: newId,
-                        name, rate, unit, owner, loc, img: event.target.result, status: 'available'
-                    });
-                    saveVehicles();
-                    renderVehicles();
-                    
-                    listModal.classList.remove('active');
-                    listForm.reset();
-                };
-                reader.readAsDataURL(photoInput.files[0]);
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendChatBtn.click();
             }
         });
     }
 
-    // 9. Functional Farmer Marketplace Logic
-    const marketGrid = document.getElementById('market-grid');
-    const defaultCrops = [
-        { id: 'c1', name: 'Organic Wheat', price: '2300', qty: '50', farmer: 'Ramesh Kumar', phone: '919876543210', img: 'assets/wheat_farmer.png' },
-        { id: 'c2', name: 'Basmati Rice', price: '6200', qty: '100', farmer: 'Suresh Patil', phone: '919876543211', img: 'assets/rice_farmer.png' }
-    ];
-
-    let marketCrops = JSON.parse(localStorage.getItem('agrimind_crops')) || defaultCrops;
-
-    function saveCrops() {
-        localStorage.setItem('agrimind_crops', JSON.stringify(marketCrops));
-    }
-
-    function renderCrops() {
-        if (!marketGrid) return;
-        marketGrid.innerHTML = '';
-        marketCrops.forEach(c => {
-            const card = document.createElement('div');
-            card.className = 'market-card fade-up hover-glow visible';
+    // Quick button handlers
+    quickBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const question = btn.getAttribute('data-question');
+            const responses = {
+                'crop-disease': 'Tell me about crop diseases',
+                'fertilizer': 'How do I calculate fertilizer needs?',
+                'equipment': 'I want to rent equipment',
+                'schemes': 'What government schemes are available?'
+            };
             
-            // Format phone number to ensure it starts with country code, default to 91 if length is 10
-            let formatPhone = c.phone.replace(/[^0-9]/g, '');
-            if (formatPhone.length === 10) formatPhone = '91' + formatPhone;
+            addUserMessage(responses[question] || 'Hello');
             
-            const message = `Hello ${c.farmer}, I am interested in buying your ${c.qty} Quintals of ${c.name} listed on AgriMind at ₹${c.price}/qtl.`;
-            const waLink = `https://wa.me/${formatPhone}?text=${encodeURIComponent(message)}`;
-
-            card.innerHTML = `
-                <div class="crop-image" style="background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url('${c.img}') center/cover;">
-                    <div class="price-tag">₹${c.price}/qtl</div>
-                </div>
-                <div class="card-content">
-                    <h3 data-lang-en="${c.name}" data-lang-hi="${c.name}">${c.name}</h3>
-                    <p class="seller"><i class="fa-solid fa-user"></i> <span data-lang-en="${c.farmer}" data-lang-hi="${c.farmer}">${c.farmer}</span></p>
-                    <p class="quantity"><i class="fa-solid fa-weight-hanging"></i> <span data-lang-en="${c.qty} Quintals" data-lang-hi="${c.qty} Quintals">${c.qty} Quintals</span></p>
-                    <a href="${waLink}" target="_blank" class="btn btn-primary btn-block"><i class="fa-brands fa-whatsapp"></i> <span data-lang-en="Contact" data-lang-hi="संपर्क">Contact</span></a>
-                </div>
-            `;
-            marketGrid.appendChild(card);
+            setTimeout(() => {
+                const response = getAIResponse(question);
+                addBotMessage(response);
+            }, 500);
         });
-    }
+    });
 
-    // Initial render
-    renderCrops();
-
-    // List Crop Modal Logic
-    const openMarketModalBtn = document.getElementById('open-market-modal');
-    const closeMarketModalBtn = document.getElementById('close-market-modal');
-    const marketModal = document.getElementById('list-market-modal');
-    const marketForm = document.getElementById('list-market-form');
-
-    if (openMarketModalBtn && marketModal && closeMarketModalBtn && marketForm) {
-        openMarketModalBtn.addEventListener('click', () => marketModal.classList.add('active'));
-        closeMarketModalBtn.addEventListener('click', () => marketModal.classList.remove('active'));
-        marketModal.addEventListener('click', (e) => {
-            if (e.target === marketModal) marketModal.classList.remove('active');
-        });
-
-        marketForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const name = document.getElementById('crop-name').value;
-            const price = document.getElementById('crop-price').value;
-            const qty = document.getElementById('crop-qty').value;
-            const farmer = document.getElementById('crop-farmer').value;
-            const phone = document.getElementById('crop-phone').value;
-            const photoInput = document.getElementById('crop-photo');
-            
-            if (photoInput.files && photoInput.files[0]) {
-                const reader = new FileReader();
-                reader.onload = function(event) {
-                    const newId = 'c' + Date.now();
-                    marketCrops.unshift({
-                        id: newId,
-                        name, price, qty, farmer, phone, img: event.target.result
-                    });
-                    saveCrops();
-                    renderCrops();
-                    
-                    marketModal.classList.remove('active');
-                    marketForm.reset();
-                };
-                reader.readAsDataURL(photoInput.files[0]);
-            }
+    // Close chat button
+    if (closeChatBtn) {
+        closeChatBtn.addEventListener('click', () => {
+            aiChatbotContainer.classList.remove('active');
         });
     }
 

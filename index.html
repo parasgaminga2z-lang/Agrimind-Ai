@@ -35,6 +35,7 @@
             <li><a href="#rentals" data-lang-en="Rentals" data-lang-hi="किराये">Rentals</a></li>
             <li><a href="#marketplace" data-lang-en="Market" data-lang-hi="बाज़ार">Market</a></li>
             <li><a href="#schemes" data-lang-en="Schemes" data-lang-hi="योजनाएं">Schemes</a></li>
+    
         </ul>
         <div class="nav-controls">
             <button id="locate-btn" class="lang-btn" title="Detect Location">
@@ -60,11 +61,16 @@
         </div>
     </div>
 
+    <!-- Floating Chatbot Icon -->
+    <div class="floating-chatbot-btn" id="floating-chatbot-btn" title="Chat with AI Bot">
+        <i class="fa-solid fa-robot"></i>
+    </div>
+
     <!-- Hero Section with Parallax -->
     <header class="hero" id="hero">
         <div class="hero-bg parallax-bg"></div>
         <div class="hero-content fade-up stagger-1">
-            <h1 data-lang-en="The Ultimate Digital Farm Ecosystem" data-lang-hi="अंतिम डिजिटल कृषि पारिस्थितिकी तंत्र">The <span class="highlight">Ultimate</span> Digital Farm Ecosystem</h1>
+            <h1 data-lang-en="The Ultimate Digital Farm Ecosystem" data-lang-hi="अंतिम डिजिटल कृषि पारिस्थितिकी तंत्र">The Ultimate Digital Farm Ecosystem</h1>
             <p class="subtitle fade-up stagger-2" data-lang-en="AI Diagnostics, Direct Marketplaces, Equipment Rentals, and Government Schemes—all in your pocket." data-lang-hi="एआई डायग्नोस्टिक्स, डायरेक्ट मार्केटप्लेस, उपकरण किराये और सरकारी योजनाएं—सब कुछ आपकी जेब में।">
                 AI Diagnostics, Direct Marketplaces, Equipment Rentals, and Government Schemes—all in your pocket.
             </p>
@@ -89,7 +95,6 @@
         
         <div class="ai-demo-container">
             <div class="ai-instructions fade-right">
-                <img src="assets/ai_farmer.png" alt="Farmer using AI" style="width: 100%; border-radius: var(--radius-lg); margin-bottom: 30px; box-shadow: var(--shadow-soft); height: 250px; object-fit: cover;">
                 <div class="ai-step hover-scale">
                     <div class="ai-icon"><i class="fa-solid fa-mobile-screen"></i></div>
                     <div>
@@ -184,16 +189,92 @@
         </div>
     </section>
 
+    <!-- AI Assistant ChatBot Section -->
+    <section class="section ai-assistant" id="ai-assistant">
+        <div class="section-header fade-up">
+            <h2 data-lang-en="AI Assistant" data-lang-hi="एआई सहायक">AI Assistant</h2>
+            <p data-lang-en="Chat with our smart farming assistant for instant guidance." data-lang-hi="तत्काल मार्गदर्शन के लिए हमारे स्मार्ट कृषि सहायक से चैट करें।">Chat with our smart farming assistant for instant guidance.</p>
+        </div>
+    </section>
+
+    <!-- Floating Chatbot Window (Outside section so it's not hidden) -->
+    <div class="ai-chatbot-container" id="ai-chatbot-modal">
+        <div class="chat-window">
+            <div class="chat-header">
+                <div class="chat-title">
+                    <i class="fa-solid fa-robot"></i>
+                    <span data-lang-en="AgriMind AI Bot" data-lang-hi="एग्रीमाइंड एआई बॉट">AgriMind AI Bot</span>
+                </div>
+                <button class="close-chat" id="close-chat-btn"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="chat-messages" id="chat-messages">
+                <div class="chat-message bot-message">
+                    <div class="message-content">
+                        <p data-lang-en="Hello! I'm your AgriMind AI Assistant. How can I help you today? Ask me about crop diseases, fertilizers, equipment, market prices, or government schemes!" data-lang-hi="नमस्ते! मैं आपका एग्रीमाइंड एआई सहायक हूँ। मैं आपकी फसल की बीमारियों, उर्वरकों, उपकरणों, बाजार की कीमतों या सरकारी योजनाओं के बारे में मदद कर सकता हूँ!">Hello! I'm your AgriMind AI Assistant. How can I help you today? Ask me about crop diseases, fertilizers, equipment, market prices, or government schemes!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="quick-options">
+                <button class="quick-btn" data-question="crop-disease" data-lang-en="Crop Disease" data-lang-hi="फसल की बीमारी">Crop Disease</button>
+                <button class="quick-btn" data-question="fertilizer" data-lang-en="Fertilizer" data-lang-hi="उर्वरक">Fertilizer</button>
+                <button class="quick-btn" data-question="equipment" data-lang-en="Equipment" data-lang-hi="उपकरण">Equipment</button>
+                <button class="quick-btn" data-question="schemes" data-lang-en="Schemes" data-lang-hi="योजनाएं">Schemes</button>
+            </div>
+            <div class="chat-input-area">
+                <input type="text" id="chat-input" placeholder="Type your question..." data-lang-placeholder-en="Type your question..." data-lang-placeholder-hi="अपना सवाल लिखें...">
+                <button id="send-chat-btn" class="btn btn-primary">
+                    <i class="fa-solid fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- Equipment Rental Section (Uber for Tractors) -->
     <section class="section rentals" id="rentals">
         <div class="section-header fade-up">
             <h2 data-lang-en="Equipment Rentals" data-lang-hi="उपकरण किराया">Equipment Rentals</h2>
             <p data-lang-en="Rent heavy machinery from local farmers by the hour." data-lang-hi="घंटे के हिसाब से स्थानीय किसानों से भारी मशीनरी किराए पर लें।">Rent heavy machinery from local farmers by the hour.</p>
-            <button class="btn btn-primary btn-glow" id="open-list-modal" style="margin-top: 25px;"><i class="fa-solid fa-plus"></i> <span data-lang-en="List Your Vehicle" data-lang-hi="अपना वाहन सूचीबद्ध करें">List Your Vehicle</span></button>
         </div>
         
-        <div class="grid card-grid" id="rentals-grid">
-            <!-- Rental cards will be dynamically injected here by JavaScript -->
+        <div class="grid card-grid">
+            <div class="equip-card fade-up hover-scale-slight">
+                <div class="equip-img">
+                    <i class="fa-solid fa-tractor"></i>
+                    <span class="badge available" data-lang-en="Available" data-lang-hi="उपलब्ध">Available</span>
+                </div>
+                <div class="equip-info">
+                    <h3 data-lang-en="Mahindra Tractor (50HP)" data-lang-hi="महिंद्रा ट्रैक्टर (50HP)">Mahindra Tractor (50HP)</h3>
+                    <p class="rate">₹800 <span data-lang-en="/ hr" data-lang-hi="/ घंटा">/ hr</span></p>
+                    <p class="owner"><i class="fa-solid fa-location-dot"></i> <span data-lang-en="2 km away (Ramesh)" data-lang-hi="2 किमी दूर (रमेश)">2 km away (Ramesh)</span></p>
+                    <button class="btn btn-secondary btn-block" data-lang-en="Book Now" data-lang-hi="अभी बुक करें">Book Now</button>
+                </div>
+            </div>
+            
+            <div class="equip-card fade-up hover-scale-slight" style="animation-delay: 0.1s;">
+                <div class="equip-img" style="background: #e67e22;">
+                    <i class="fa-solid fa-truck-monster"></i>
+                    <span class="badge busy" data-lang-en="Busy till 5 PM" data-lang-hi="शाम 5 बजे तक व्यस्त">Busy till 5 PM</span>
+                </div>
+                <div class="equip-info">
+                    <h3 data-lang-en="Combine Harvester" data-lang-hi="कंबाइन हार्वेस्टर">Combine Harvester</h3>
+                    <p class="rate">₹2500 <span data-lang-en="/ hr" data-lang-hi="/ घंटा">/ hr</span></p>
+                    <p class="owner"><i class="fa-solid fa-location-dot"></i> <span data-lang-en="5 km away (Suresh)" data-lang-hi="5 किमी दूर (सुरेश)">5 km away (Suresh)</span></p>
+                    <button class="btn btn-secondary btn-block" disabled data-lang-en="Pre-book" data-lang-hi="प्री-बुक">Pre-book</button>
+                </div>
+            </div>
+            
+            <div class="equip-card fade-up hover-scale-slight" style="animation-delay: 0.2s;">
+                <div class="equip-img" style="background: #3498db;">
+                    <i class="fa-solid fa-helicopter"></i>
+                    <span class="badge available" data-lang-en="Available" data-lang-hi="उपलब्ध">Available</span>
+                </div>
+                <div class="equip-info">
+                    <h3 data-lang-en="Spraying Drone" data-lang-hi="छिड़काव ड्रोन">Spraying Drone</h3>
+                    <p class="rate">₹400 <span data-lang-en="/ acre" data-lang-hi="/ एकड़">/ acre</span></p>
+                    <p class="owner"><i class="fa-solid fa-location-dot"></i> <span data-lang-en="10 km away (AgriTech Co)" data-lang-hi="10 किमी दूर (एग्रीटेक कंपनी)">10 km away (AgriTech Co)</span></p>
+                    <button class="btn btn-secondary btn-block" data-lang-en="Book Now" data-lang-hi="अभी बुक करें">Book Now</button>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -221,11 +302,34 @@
         <div class="section-header fade-up">
             <h2 data-lang-en="Direct Farmer Marketplace" data-lang-hi="सीधा किसान बाज़ार">Direct Farmer Marketplace</h2>
             <p data-lang-en="Zero Mediators. Sell directly to bulk buyers." data-lang-hi="शून्य मध्यस्थ। सीधे थोक खरीदारों को बेचें।">Zero Mediators. Sell directly to bulk buyers.</p>
-            <button class="btn btn-primary btn-glow" id="open-market-modal" style="margin-top: 25px;"><i class="fa-solid fa-plus"></i> <span data-lang-en="Sell Your Crop" data-lang-hi="अपनी फसल बेचें">Sell Your Crop</span></button>
         </div>
         
-        <div class="grid card-grid" id="market-grid">
-            <!-- Market cards will be dynamically injected here by JavaScript -->
+        <div class="grid card-grid">
+            <div class="market-card fade-up hover-glow">
+                <div class="crop-image" style="background-color: #f1c40f;">
+                    <i class="fa-solid fa-wheat-awn"></i>
+                    <div class="price-tag">₹2,300/qtl</div>
+                </div>
+                <div class="card-content">
+                    <h3 data-lang-en="Organic Wheat" data-lang-hi="जैविक गेहूं">Organic Wheat</h3>
+                    <p class="seller"><i class="fa-solid fa-user"></i> <span data-lang-en="Ramesh Kumar" data-lang-hi="रमेश कुमार">Ramesh Kumar</span></p>
+                    <p class="quantity"><i class="fa-solid fa-weight-hanging"></i> <span data-lang-en="50 Quintals" data-lang-hi="50 क्विंटल">50 Quintals</span></p>
+                    <button class="btn btn-primary btn-block"><i class="fa-brands fa-whatsapp"></i> <span data-lang-en="Contact" data-lang-hi="संपर्क">Contact</span></button>
+                </div>
+            </div>
+            
+            <div class="market-card fade-up hover-glow" style="animation-delay: 0.1s;">
+                <div class="crop-image" style="background-color: #27ae60;">
+                    <i class="fa-solid fa-seedling"></i>
+                    <div class="price-tag">₹6,200/qtl</div>
+                </div>
+                <div class="card-content">
+                    <h3 data-lang-en="Basmati Rice" data-lang-hi="बासमती चावल">Basmati Rice</h3>
+                    <p class="seller"><i class="fa-solid fa-user"></i> <span data-lang-en="Suresh Patil" data-lang-hi="सुरेश पाटिल">Suresh Patil</span></p>
+                    <p class="quantity"><i class="fa-solid fa-weight-hanging"></i> <span data-lang-en="100 Quintals" data-lang-hi="100 क्विंटल">100 Quintals</span></p>
+                    <button class="btn btn-primary btn-block"><i class="fa-brands fa-whatsapp"></i> <span data-lang-en="Contact" data-lang-hi="संपर्क">Contact</span></button>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -259,104 +363,6 @@
             </div>
         </div>
     </section>
-
-    <!-- List Vehicle Modal -->
-    <div class="modal-overlay" id="list-vehicle-modal">
-        <div class="modal-card">
-            <div class="modal-header">
-                <h3 data-lang-en="List Your Equipment" data-lang-hi="अपना उपकरण सूचीबद्ध करें">List Your Equipment</h3>
-                <button type="button" class="close-modal" id="close-modal"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-            <form id="list-vehicle-form" class="modal-form">
-                <div class="form-group">
-                    <label data-lang-en="Equipment Name" data-lang-hi="उपकरण का नाम">Equipment Name</label>
-                    <input type="text" id="veh-name" required placeholder="e.g. John Deere Tractor">
-                </div>
-                <div class="form-group row" style="display: flex; gap: 15px;">
-                    <div class="col" style="flex: 1;">
-                        <label data-lang-en="Rate (₹)" data-lang-hi="दर (₹)">Rate (₹)</label>
-                        <input type="number" id="veh-rate" required placeholder="800">
-                    </div>
-                    <div class="col" style="flex: 1;">
-                        <label data-lang-en="Per" data-lang-hi="प्रति">Per</label>
-                        <select id="veh-unit">
-                            <option value="/ hr">Hour</option>
-                            <option value="/ acre">Acre</option>
-                            <option value="/ day">Day</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label data-lang-en="Owner Name" data-lang-hi="मालिक का नाम">Owner Name</label>
-                    <input type="text" id="veh-owner" required placeholder="Your Name">
-                </div>
-                <div class="form-group">
-                    <label data-lang-en="Location (Distance)" data-lang-hi="स्थान (दूरी)">Location (Distance)</label>
-                    <input type="text" id="veh-loc" required placeholder="e.g. 2 km away">
-                </div>
-                <div class="form-group">
-                    <label data-lang-en="Equipment Photo" data-lang-hi="उपकरण फोटो">Equipment Photo</label>
-                    <input type="file" id="veh-photo" accept="image/*" required style="padding: 12px; background: transparent; border: 2px dashed #e2e8f0;">
-                </div>
-                <button type="submit" class="btn btn-primary btn-block" data-lang-en="Add Listing" data-lang-hi="सूचीकरण जोड़ें" style="margin-top: 10px;">Add Listing</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- List Crop Modal -->
-    <div class="modal-overlay" id="list-market-modal">
-        <div class="modal-card">
-            <div class="modal-header">
-                <h3 data-lang-en="Sell Your Crop" data-lang-hi="अपनी फसल बेचें">Sell Your Crop</h3>
-                <button type="button" class="close-modal" id="close-market-modal"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-            <form id="list-market-form" class="modal-form">
-                <div class="form-group">
-                    <label data-lang-en="Crop Name" data-lang-hi="फसल का नाम">Crop Name</label>
-                    <input type="text" id="crop-name" required placeholder="e.g. Organic Tomatoes">
-                </div>
-                <div class="form-group row" style="display: flex; gap: 15px;">
-                    <div class="col" style="flex: 1;">
-                        <label data-lang-en="Price (₹/qtl)" data-lang-hi="मूल्य (₹/क्विंटल)">Price (₹/qtl)</label>
-                        <input type="number" id="crop-price" required placeholder="2500">
-                    </div>
-                    <div class="col" style="flex: 1;">
-                        <label data-lang-en="Quantity (qtl)" data-lang-hi="मात्रा (क्विंटल)">Quantity (qtl)</label>
-                        <input type="number" id="crop-qty" required placeholder="50">
-                    </div>
-                </div>
-                <div class="form-group row" style="display: flex; gap: 15px;">
-                    <div class="col" style="flex: 1;">
-                        <label data-lang-en="Farmer Name" data-lang-hi="किसान का नाम">Farmer Name</label>
-                        <input type="text" id="crop-farmer" required placeholder="Your Name">
-                    </div>
-                    <div class="col" style="flex: 1;">
-                        <label data-lang-en="WhatsApp No." data-lang-hi="व्हाट्सएप नंबर">WhatsApp No.</label>
-                        <input type="tel" id="crop-phone" required placeholder="9876543210">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label data-lang-en="Crop Photo" data-lang-hi="फसल फोटो">Crop Photo</label>
-                    <input type="file" id="crop-photo" accept="image/*" required style="padding: 12px; background: transparent; border: 2px dashed #e2e8f0;">
-                </div>
-                <button type="submit" class="btn btn-primary btn-block" data-lang-en="Add Crop Listing" data-lang-hi="फसल सूची जोड़ें" style="margin-top: 10px;">Add Crop Listing</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- Confirm Booking Modal -->
-    <div class="modal-overlay" id="booking-modal">
-        <div class="modal-card" style="max-width: 400px; text-align: center;">
-            <div class="modal-header" style="justify-content: center; margin-bottom: 15px;">
-                <h3 data-lang-en="Confirm Booking" data-lang-hi="बुकिंग की पुष्टि करें">Confirm Booking</h3>
-            </div>
-            <p id="booking-details" style="margin-bottom: 25px; color: var(--text-light); font-size: 1.1rem;"></p>
-            <div style="display: flex; gap: 15px; justify-content: center;">
-                <button class="btn btn-secondary" id="cancel-booking" data-lang-en="Cancel" data-lang-hi="रद्द करें">Cancel</button>
-                <button class="btn btn-primary btn-glow" id="confirm-booking" data-lang-en="Confirm" data-lang-hi="पुष्टि करें">Confirm</button>
-            </div>
-        </div>
-    </div>
 
     <!-- Footer -->
     <footer class="footer">
